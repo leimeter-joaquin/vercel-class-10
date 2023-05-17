@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 
-dotenv.config();
+if (process.env.NODE_ENV === "development") dotenv.config();
 
 const app = express().use(express.json());
 
@@ -16,7 +16,7 @@ try {
 
 app.get("/", (req, res) =>
   res.json({
-    message: `You are ${process.env.MY_NAME} and the environment is ${process.env.VERCEL_ENV}`,
+    message: `You are ${process.env.MY_NAME} and the environment is: ${process.env.VERCEL_ENV}`,
     "process.env": process.env,
   })
 );
